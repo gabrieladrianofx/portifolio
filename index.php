@@ -1,3 +1,46 @@
+<?php
+
+$projetos = [
+    [
+        'titulo' => "Cubo Mágico",
+        'descricao' => "É um projeto inspirado no famoso quebra-cabeça tridimensional, desenvolvido para explorar conceitos de design e interatividade.",
+        'src' => './assets/img/carrossel.png',
+        'stack' => ['CSS', 'HTML']
+    ],
+    [
+        'titulo' => "N5 Telecom",
+        'descricao' => "Uma plataforma para gerenciamento de serviços de telecomunicações, facilitando o controle de assinaturas e suporte ao cliente.",
+        'src' => './assets/img/notices.png',
+        'stack' => ['CSS', 'PHP', 'Javascript']
+    ],
+    [
+        'titulo' => "Food Delivery App",
+        'descricao' => "Aplicativo para pedidos de comida online, conectando restaurantes e clientes com um sistema de entrega eficiente.",
+        'src' => './assets/img/receive.png',
+        'stack' => ['React Native', 'Node.js', 'MongoDB', 'Expo']
+    ],
+    [
+        'titulo' => "Sistema de Estoque",
+        'descricao' => "Ferramenta para controle e organização de produtos em estoque, com monitoramento de entrada e saída de mercadorias.",
+        'src' => './assets/img/busan.png',
+        'stack' => ['PHP', 'Laravel', 'MySQL']
+    ],
+    [
+        'titulo' => "Blog Tech Trends",
+        'descricao' => "Blog sobre as últimas tendências em tecnologia, com artigos sobre desenvolvimento, IA e inovação digital.",
+        'src' => './assets/img/refund.png',
+        'stack' => ['WordPress', 'PHP', 'CSS', 'Postgres']
+    ],
+    [
+        'titulo' => "Plataforma de Cursos Online",
+        'descricao' => "Sistema para gerenciamento de cursos e aulas online, permitindo a criação de conteúdos educacionais interativos.",
+        'src' => './assets/img/zingen.png',
+        'stack' => ['React', 'Next.js', 'Firebase']
+    ]
+];
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -70,22 +113,16 @@
                 </div>
             </div>
             <!-- tags -->
-            <div class="flex flex-wrap justify-center gap-2">
-                <div class="hover:animate-bounce delay-700 inline-flex items-center px-3 py-1 text-gray-200 text-tag text-[16px] font-bold rounded-full bg-green">
-                    <span>GitHub</span>
-                </div>
-                <div class="hover:animate-bounce inline-flex items-center px-3 py-1 text-gray-200 text-tag text-[16px] font-bold rounded-full bg-purple">
-                    <span>PHP</span>
-                </div>
-                <div class="hover:animate-bounce inline-flex items-center px-3 py-1 text-gray-200 text-tag text-[16px] font-bold rounded-full bg-blue">
-                    <span>CSS</span>
-                </div>
-                <div class="hover:animate-bounce inline-flex items-center px-3 py-1 text-gray-200 text-tag text-[16px] font-bold rounded-full bg-red">
-                    <span>HTML</span>
-                </div>
-                <div class="hover:animate-bounce inline-flex items-center px-3 py-1 text-gray-200 text-tag text-[16px] font-bold rounded-full bg-yellow">
-                    <span>Javascript</span>
-                </div>
+            <div class="flex flex-wrap justify-center gap-3">
+                <?php
+                $stacks = array_unique(array_merge(...array_column($projetos, 'stack')));
+                foreach ($stacks as $stack):
+
+                    $hash = md5($stack);
+                    $cor = "#" . substr($hash, 0, 6);
+                ?>
+                    <span class="hover:animate-bounce w-auto h-auto px-3 py-1 text-gray-200 text-tag text-[16px] font-bold rounded-full" style="background-color: <?= $cor ?>;"><?= $stack ?></span>
+                <?php endforeach; ?>
             </div>
         </div>
     </header>
@@ -99,108 +136,28 @@
 
         <!-- card -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
-            <div class="w-full bg-gray-300 rounded-[12px] flex flex-row gap-4 p-4 outline-0 hover:outline hover:outline-1 hover:outline-gray-400 transition">
-                <img class="w-[224px] h-[156px] rounded-[8px]" src="./assets/img/carrossel.png" alt="Imagem Travelgram">
-                <div class="flex flex-col justify-between w-full space-y-2 px-1 py-2">
-                    <div class="space-y-2">
-                        <span class="font-heading font-bold text-sm text-gray-600">Travelgram</span>
-                        <p class="font-text text-sm text-gray-500">Rede social onde as pessoas mostram os registros de suas viagens pelo mundo</p>
-                    </div>
-                    <div class="flex flex-wrap w-full gap-2">
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-[12px] font-bold rounded-full bg-purple">PHP</span>
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-[12px] font-bold rounded-full bg-blue">CSS</span>
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-[12px] font-bold rounded-full bg-red">HTML</span>
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-[12px] font-bold rounded-full bg-red bg-yellow">
-                            Javascript
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full bg-gray-300 rounded-[12px] flex flex-row gap-4 p-4 outline-0 hover:outline hover:outline-1 hover:outline-gray-400 transition">
-                <img class="w-[224px] h-[156px] rounded-[8px]" src="./assets/img/carrossel.png" alt="Imagem Travelgram">
-                <div class="flex flex-col justify-between w-full space-y-2 px-1 py-2">
-                    <div class="space-y-2">
-                        <span class="font-heading font-bold text-sm text-gray-600">Travelgram</span>
-                        <p class="font-text text-sm text-gray-500">Rede social onde as pessoas mostram os registros de suas viagens pelo mundo</p>
-                    </div>
-                    <div class="flex flex-wrap w-full gap-2">
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-purple">PHP</span>
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-blue">CSS</span>
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-red">HTML</span>
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-red bg-yellow">
-                            Javascript
-                        </span>
+            <?php 
+                foreach($projetos as $projeto):
+                    ?>
+                <div class="w-full bg-gray-300 rounded-[12px] flex flex-row gap-4 p-4 outline-0 hover:outline hover:outline-1 hover:outline-gray-400 transition">
+                    <img class="w-[224px] h-[156px] rounded-[8px]" src="<?= $projeto['src'] ?>" alt="Imagem <?= $projeto['titulo'] ?>">
+                    <div class="flex flex-col justify-between w-full space-y-2 px-1 py-2">
+                        <div class="space-y-2">
+                            <span class="font-heading font-bold text-sm text-gray-600"><?= $projeto['titulo'] ?></span>
+                            <p class="font-text text-sm text-gray-500"><?= $projeto['descricao'] ?></p>
+                        </div>
+                        <div class="flex flex-wrap w-full gap-2">
+                            <?php 
+                                foreach($projeto['stack'] as $stack): 
+                                    $hash = md5($stack);
+                                    $cor = "#" . substr($hash, 0, 6);
+                            ?>
+                                <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-[12px] font-bold rounded-full" style="background-color: <?= $cor ?>;"><?= $stack ?></span>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="w-full bg-gray-300 rounded-[12px] flex flex-row gap-4 p-4 outline-0 hover:outline hover:outline-1 hover:outline-gray-400 transition">
-                <img class="w-[224px] h-[156px] rounded-[8px]" src="./assets/img/carrossel.png" alt="Imagem Travelgram">
-                <div class="flex flex-col justify-between w-full space-y-2 px-1 py-2">
-                    <div class="space-y-2">
-                        <span class="font-heading font-bold text-sm text-gray-600">Travelgram</span>
-                        <p class="font-text text-sm text-gray-500">Rede social onde as pessoas mostram os registros de suas viagens pelo mundo</p>
-                    </div>
-                    <div class="flex flex-wrap w-full gap-2">
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-purple">PHP</span>
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-blue">CSS</span>
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-red">HTML</span>
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-red bg-yellow">
-                            Javascript
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full bg-gray-300 rounded-[12px] flex flex-row gap-4 p-4 outline-0 hover:outline hover:outline-1 hover:outline-gray-400 transition">
-                <img class="w-[224px] h-[156px] rounded-[8px]" src="./assets/img/carrossel.png" alt="Imagem Travelgram">
-                <div class="flex flex-col justify-between w-full space-y-2 px-1 py-2">
-                    <div class="space-y-2">
-                        <span class="font-heading font-bold text-sm text-gray-600">Travelgram</span>
-                        <p class="font-text text-sm text-gray-500">Rede social onde as pessoas mostram os registros de suas viagens pelo mundo</p>
-                    </div>
-                    <div class="flex flex-wrap w-full gap-2">
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-purple">PHP</span>
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-blue">CSS</span>
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-red">HTML</span>
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-red bg-yellow">
-                            Javascript
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full bg-gray-300 rounded-[12px] flex flex-row gap-4 p-4 outline-0 hover:outline hover:outline-1 hover:outline-gray-400 transition">
-                <img class="w-[224px] h-[156px] rounded-[8px]" src="./assets/img/carrossel.png" alt="Imagem Travelgram">
-                <div class="flex flex-col justify-between w-full space-y-2 px-1 py-2">
-                    <div class="space-y-2">
-                        <span class="font-heading font-bold text-sm text-gray-600">Travelgram</span>
-                        <p class="font-text text-sm text-gray-500">Rede social onde as pessoas mostram os registros de suas viagens pelo mundo</p>
-                    </div>
-                    <div class="flex flex-wrap w-full gap-2">
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-purple">PHP</span>
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-blue">CSS</span>
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-red">HTML</span>
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-red bg-yellow">
-                            Javascript
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full bg-gray-300 rounded-[12px] flex flex-row gap-4 p-4 outline-0 hover:outline hover:outline-1 hover:outline-gray-400 transition">
-                <img class="w-[224px] h-[156px] rounded-[8px]" src="./assets/img/carrossel.png" alt="Imagem Travelgram">
-                <div class="flex flex-col justify-between w-full space-y-2 px-1 py-2">
-                    <div class="space-y-2">
-                        <span class="font-heading font-bold text-sm text-gray-600">Travelgram</span>
-                        <p class="font-text text-sm text-gray-500">Rede social onde as pessoas mostram os registros de suas viagens pelo mundo</p>
-                    </div>
-                    <div class="flex flex-wrap w-full gap-2">
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-purple">PHP</span>
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-blue">CSS</span>
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-red">HTML</span>
-                        <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-sm font-bold rounded-full bg-red bg-yellow">
-                            Javascript
-                        </span>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </section>
 
