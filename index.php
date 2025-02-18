@@ -1,5 +1,7 @@
 <?php
 
+include './components/stacks.php';
+
 $projetos = [
     [
         'titulo' => "Cubo Mágico",
@@ -17,7 +19,7 @@ $projetos = [
         'titulo' => "Food Delivery App",
         'descricao' => "Aplicativo para pedidos de comida online, conectando restaurantes e clientes com um sistema de entrega eficiente.",
         'src' => './assets/img/receive.png',
-        'stack' => ['React Native', 'Node.js', 'MongoDB', 'Expo']
+        'stack' => ['React Native', 'Node.js', 'MongoDB', 'Expo', 'AWS']
     ],
     [
         'titulo' => "Sistema de Estoque",
@@ -37,6 +39,25 @@ $projetos = [
         'src' => './assets/img/zingen.png',
         'stack' => ['React', 'Next.js', 'Firebase']
     ]
+];
+
+$contact_links = [
+    [
+        'media_social_name' => 'Linkedin',
+        'media_social_logo' => 'ph ph-linkedin-logo',
+    ],
+    [
+        'media_social_name' => 'Instagram',
+        'media_social_logo' => 'ph ph-instagram-logo',
+    ],
+    [
+        'media_social_name' => 'GitHub',
+        'media_social_logo' => 'ph ph-github-logo',
+    ],
+    [
+        'media_social_name' => 'Email',
+        'media_social_logo' => 'ph ph-envelope-simple',
+    ],
 ];
 
 ?>
@@ -114,52 +135,22 @@ $projetos = [
             </div>
             <!-- tags -->
             <div class="flex flex-wrap justify-center gap-3">
-                <?php
-                $stacks = array_unique(array_merge(...array_column($projetos, 'stack')));
-                foreach ($stacks as $stack):
-
-                    $hash = md5($stack);
-                    $cor = "#" . substr($hash, 0, 6);
-                ?>
-                    <span class="hover:animate-bounce w-auto h-auto px-3 py-1 text-gray-200 text-tag text-[16px] font-bold rounded-full" style="background-color: <?= $cor ?>;"><?= $stack ?></span>
-                <?php endforeach; ?>
+                <?php renderStacks($projetos, 'header'); ?>
             </div>
         </div>
     </header>
 
-    <section class="w-full py-16 flex flex-col items-center px-4 md:px-20 pb-36">
+    <main class="w-full py-16 flex flex-col items-center px-4 md:px-20 pb-36">
         <!-- header -->
         <div class="w-full text-center">
             <span class="text-red font-subtitle">Meu trabalho</span>
             <h2 class="text-gray-600 text-xl font-heading font-bold">Veja os projetos em destaque</h2>
         </div>
 
-        <!-- card -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
-            <?php 
-                foreach($projetos as $projeto):
-                    ?>
-                <div class="w-full bg-gray-300 rounded-[12px] flex flex-row gap-4 p-4 outline-0 hover:outline hover:outline-1 hover:outline-gray-400 transition">
-                    <img class="w-[224px] h-[156px] rounded-[8px]" src="<?= $projeto['src'] ?>" alt="Imagem <?= $projeto['titulo'] ?>">
-                    <div class="flex flex-col justify-between w-full space-y-2 px-1 py-2">
-                        <div class="space-y-2">
-                            <span class="font-heading font-bold text-sm text-gray-600"><?= $projeto['titulo'] ?></span>
-                            <p class="font-text text-sm text-gray-500"><?= $projeto['descricao'] ?></p>
-                        </div>
-                        <div class="flex flex-wrap w-full gap-2">
-                            <?php 
-                                foreach($projeto['stack'] as $stack): 
-                                    $hash = md5($stack);
-                                    $cor = "#" . substr($hash, 0, 6);
-                            ?>
-                                <span class="w-auto h-auto px-2 py-1 text-gray-200 text-tag text-[12px] font-bold rounded-full" style="background-color: <?= $cor ?>;"><?= $stack ?></span>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </section>
+        <!-- card projects -->
+        <?php include('./components/main-card-project.php'); ?>
+    </main>
+
 
     <footer class="w-full h-[787px] bg-footer-bg bg-cover bg-center flex flex-col items-center mx-30 pt-32 mb-50 gap-12">
         <!-- header -->
@@ -172,26 +163,7 @@ $projetos = [
         <!-- links -->
         <div class="w-[400px] flex flex-col gap-4">
             <!-- card -->
-            <div class="bg-gray-300 rounded-[8px] w-full flex items-center justify-between px-5 py-5 gap-3 outline-0 hover:outline hover:outline-1 hover:outline-blue transition group">
-                <span class="text-gray-400 text-[28px] group-hover:text-blue"><i class="ph ph-linkedin-logo"></i></span>
-                <span class="flex-1 font-text text-[16px] text-gray-500 font-medium">Linkedin</span>
-                <span class="text-blue text-[20px]"><i class="ph ph-arrow-up-right"></i></span>
-            </div>
-            <div class="bg-gray-300 rounded-[8px] w-full flex items-center justify-between px-5 py-5 gap-3 outline-0 hover:outline hover:outline-1 hover:outline-blue transition group">
-                <span class="text-gray-400 text-[28px] group-hover:text-blue"><i class="ph ph-instagram-logo"></i></span>
-                <span class="flex-1 font-text text-[16px] text-gray-500 font-medium">Instagram</span>
-                <span class="text-blue text-[20px]"><i class="ph ph-arrow-up-right"></i></span>
-            </div>
-            <div class="bg-gray-300 rounded-[8px] w-full flex items-center justify-between px-5 py-5 gap-3 outline-0 hover:outline hover:outline-1 hover:outline-blue transition group">
-                <span class="text-gray-400 text-[28px] group-hover:text-blue"><i class="ph ph-github-logo"></i></span>
-                <span class="flex-1 font-text text-[16px] text-gray-500 font-medium">GitHub</span>
-                <span class="text-blue text-[20px]"><i class="ph ph-arrow-up-right"></i></span>
-            </div>
-            <div class="bg-gray-300 rounded-[8px] w-full flex items-center justify-between px-5 py-5 gap-3 outline-0 hover:outline hover:outline-1 hover:outline-blue transition group">
-                <span class="text-gray-400 text-[28px] group-hover:text-blue"><i class="ph ph-envelope-simple"></i></i></span>
-                <span class="flex-1 font-text text-[16px] text-gray-500 font-medium">Email</span>
-                <span class="text-blue text-[20px]"><i class="ph ph-arrow-up-right"></i></span>
-            </div>
+            <?php include('./components/footer-card-link.php'); ?>
         </div>
     </footer>
 </body>
